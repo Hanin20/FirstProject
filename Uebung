@@ -10,7 +10,7 @@ public class RomToDec {
 
 		for (int i = 0; rom.length() > i; i++) {
 
-			char eingabe = rom.charAt(i);
+			char eingabe = rom.charAt(i); //einzelne String Zeichen ausselen 
 			char zeichen;
 
 			if (i + 1 != rom.length()) {
