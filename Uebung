@@ -1,18 +1,30 @@
 
 import java.util.*;
 
-public class RomToDec {
+public class Umrechnung {
 
-	// Methode mit Rückgabewert von der Datentyp int
+	/*
+	 * Methode mit Rückgabewert (von der Datentyp int) und Parameterübergabe
+	 * (Datentyp: String) zur Umrechnung von römischen Zahlen in Dezimalzahlen.
+	 */
 	public static int RomToDez(String rom) {
 
 		int dez = 0;
 
+		/*
+		 * Die Zeile "for (int i = 0; rom.length() > i; i++)" initialisiert eine
+		 * Schleifenvariable i mit 0 und führt die Schleife aus, solange i kleiner ist
+		 * als die Länge des Strings rom. In jedem Schleifendurchlauf wird i um 1
+		 * erhöht. Dies wird verwendet, um durch die Zeichen eines Strings rom zu
+		 * iterieren (also jedes Zeichen im String wird einzeln betrachtet oder
+		 * verarbeitet).
+		 */
 		for (int i = 0; rom.length() > i; i++) {
 
-			char eingabe = rom.charAt(i); //einzelne String Zeichen ausselen 
+			char eingabe = rom.charAt(i); // einzelne String Zeichen ausselen
 			char zeichen;
 
+			//// Überprüfen, ob es ein weiteres Zeichen gibt.
 			if (i + 1 != rom.length()) {
 
 				zeichen = rom.charAt(i + 1);
@@ -22,8 +34,9 @@ public class RomToDec {
 						|| zeichen == 'D' || zeichen == 'M')) {
 
 					dez = dez - 1;
-					continue; // Wenn das zutrifft, wird die aktuelle Durchlauf der Schleife übersprungen und
-								// der nächsten durchgeführt.
+					continue;
+					// Wenn das zutrifft, wird die aktuelle Durchlauf der Schleife übersprungen und
+					// der nächsten durchgeführt.
 				}
 
 				if (eingabe == 'V'
@@ -81,11 +94,15 @@ public class RomToDec {
 			}
 		}
 
-		return dez;
+		return dez; // Da die Methode mit Rückgabewert ist, muss sie mit ihre Rückgabewert beendet
+					// werden.
 
 	}
 
-	// Methode mit Rückgabewert von der Datentyp String
+	/*
+	 * Methode mit Rückgabewert (von der Datentyp String) und Parameterübergabe
+	 * (Datentyp: int) zur Umrechnung von Dezimalzahlen in römischen Zahlen in .
+	 */
 	public static String DecInRom(int dez) {
 
 		String newRom = "";
@@ -176,7 +193,7 @@ public class RomToDec {
 		while (true) {
 
 			System.out.println(
-					"Was möchten Sie tun? \n Geben Sie 1 oder 2: (1 für Römisch -> Dez und 2 für Dez -> Römisch)");
+					"Geben Sie 1 oder 2: (1 für Römischzahl -> Dezimalzahl und 2 für Dezimalzahl -> Römischzahl)");
 			String eingabe = sc.nextLine();
 
 			if (eingabe.equals("1")) {
@@ -206,6 +223,6 @@ public class RomToDec {
 			}
 		}
 
-		System.out.println("Fertig");
+		System.out.println("Ende des Programms!");
 	}
 }
