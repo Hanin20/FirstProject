@@ -1,46 +1,211 @@
-import javax.swing.*;
-import java.sql.SQLOutput;
+
 import java.util.*;
 
-public class Main {
-    public static void main(String[] args) {
+public class RomToDec {
 
-        String romNumber = ("I,V,X,L,C,D,M");
-        String dezNumber = ("1,5,10,50,100,500,1000");
+	// Methode mit Rückgabewert von der Datentyp int
+	public static int RomToDez(String rom) {
 
-        Scanner sc = new Scanner(System.in);
-        
-        System.out.println("Geben Sie ein römischen Zahl ein: ");
+		int dez = 0;
 
+		for (int i = 0; rom.length() > i; i++) {
 
+			char eingabe = rom.charAt(i);
+			char zeichen;
 
+			if (i + 1 != rom.length()) {
 
+				zeichen = rom.charAt(i + 1);
 
+				// Subtraktion
+				if (eingabe == 'I' && (zeichen == 'V' || zeichen == 'X' || zeichen == 'L' || zeichen == 'C'
+						|| zeichen == 'D' || zeichen == 'M')) {
 
+					dez = dez - 1;
+					continue; // Wenn das zutrifft, wird die aktuelle Durchlauf der Schleife übersprungen und
+								// der nächsten durchgeführt.
+				}
 
+				if (eingabe == 'V'
+						&& (zeichen == 'X' || zeichen == 'L' || zeichen == 'C' || zeichen == 'D' || zeichen == 'M')) {
+					dez = dez - 5;
+					continue;
+				}
 
-        /*
-        for (int i = 0; romNumber.length() - 1 > i; i++) {
+				if (eingabe == 'X' && (zeichen == 'L' || zeichen == 'C' || zeichen == 'D' || zeichen == 'M')) {
+					dez = dez - 10;
+					continue;
+				}
 
-            if (eingabe == 1) {
+				if (eingabe == 'L' && (zeichen == 'C' || zeichen == 'D' || zeichen == 'M')) {
+					dez = dez - 50;
+					continue;
+				}
 
-            }
-            else if(eingabe == 2){
-                System.out.println("Der Rämischen Zahl lautet: ");
+				if (eingabe == 'C' && (zeichen == 'D' || zeichen == 'M')) {
+					dez = dez - 100;
+					continue;
+				}
 
-            }
+				if (eingabe == 'D' && zeichen == 'M') {
+					dez = dez - 500;
+					continue;
+				}
+			}
 
-            else {
-                String antwort = sc.nextLine();
-                System.out.println("Möchten Sie weitere Umrechnungen dürchführen? "+ antwort);
+			switch (eingabe) {
 
-            }
+			case 'I':
+				dez = dez + 1;
+				break;
 
-        }
-        }
+			case 'V':
+				dez = dez + 5;
+				break;
+			case 'X':
+				dez = dez + 10;
+				break;
+			case 'L':
+				dez = dez + 50;
+				break;
+			case 'C':
+				dez = dez + 100;
+				break;
+			case 'D':
+				dez = dez + 500;
+				break;
+			case 'M':
+				dez = dez + 1000;
+				break;
 
-         */
+			}
+		}
 
+		return dez;
 
-    }
+	}
+
+	// Methode mit Rückgabewert von der Datentyp String
+	public static String DecInRom(int dez) {
+
+		String newRom = "";
+
+		while (dez > 0) {
+
+			if (dez >= 1000) {
+
+				newRom = newRom + "M";
+				dez = dez - 1000;
+
+			}
+
+			else if (dez >= 900) {
+				newRom = newRom + "CM";
+				dez = dez - 900;
+			}
+
+			else if (dez >= 500) {
+
+				dez = dez - 500;
+				newRom = newRom + "D";
+			}
+
+			else if (dez >= 400) {
+				newRom = newRom + "CD";
+				dez = dez - 400;
+			}
+
+			else if (dez >= 100) {
+				dez = dez - 100;
+				newRom = newRom + "C";
+			}
+
+			else if (dez >= 90) {
+				newRom = newRom + "XC";
+				dez = dez - 90;
+			}
+
+			else if (dez >= 50) {
+				dez = dez - 50;
+				newRom = newRom + "L";
+			}
+
+			else if (dez >= 40) {
+				newRom = newRom + "XL";
+				dez = dez - 40;
+			}
+
+			else if (dez >= 10) {
+				dez = dez - 10;
+				newRom = newRom + "X";
+			}
+
+			else if (dez >= 9) {
+				newRom = newRom + "IX";
+				dez = dez - 9;
+			}
+
+			else if (dez >= 5) {
+				dez = dez - 5;
+				newRom = newRom + "V";
+			}
+
+			else if (dez >= 4) {
+				newRom = newRom + "IV";
+				dez = dez - 4;
+			}
+
+			else if (dez >= 1) {
+				dez = dez - 1;
+				newRom = newRom + "I";
+			}
+
+		}
+
+		return newRom;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		String[] romNumber = { "I", "V", "X", "L", "C", "D", "M" };
+		int[] dezNumber = { 1, 5, 10, 50, 100, 500, 1000 };
+
+		Scanner sc = new Scanner(System.in);
+
+		while (true) {
+
+			System.out.println(
+					"Was möchten Sie tun? \n Geben Sie 1 oder 2: (1 für Römisch -> Dez und 2 für Dez -> Römisch)");
+			String eingabe = sc.nextLine();
+
+			if (eingabe.equals("1")) {
+
+				System.out.println("Geben Sie ein römischen Zahl ein: ");
+				String rom = sc.nextLine();
+
+				int dez = RomToDez(rom);
+				System.out.println("Der Dezimalzahl lautet: " + dez);
+			}
+
+			else {
+				System.out.println("Geben Sie den Dezimalzahl ein:");
+				int dez = sc.nextInt();
+				sc.nextLine();
+
+				String newRom = DecInRom(dez);
+
+				System.out.println("Der Römischen Zahl lautet: " + newRom);
+
+			}
+
+			System.out.println("Möchten Sie andere Umrechnung durchführen? \nGeben Sie J/N: ");
+			eingabe = sc.nextLine();
+			if (!eingabe.equals("J")) {
+				break;
+			}
+		}
+
+		System.out.println("Fertig");
+	}
 }
