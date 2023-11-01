@@ -24,12 +24,16 @@ public class Umrechnung {
 			char eingabe = rom.charAt(i); // einzelne String Zeichen ausselen
 			char zeichen;
 
-			//// Überprüfen, ob es ein weiteres Zeichen gibt.
+/*
+// Dieser Abschnitt des Codes überprüft, ob die römische Ziffer an der aktuellen Position
+// kleiner ist als die folgende Ziffer. Wenn ja, wird der entsprechende dezimale Wert subtrahiert,
+// gemäß den Regeln der römischen Zahlen.
+*/ 
+
 			if (i + 1 != rom.length()) {
 
 				zeichen = rom.charAt(i + 1);
 
-				// Subtraktion
 				if (eingabe == 'I' && (zeichen == 'V' || zeichen == 'X' || zeichen == 'L' || zeichen == 'C'
 						|| zeichen == 'D' || zeichen == 'M')) {
 
@@ -65,6 +69,12 @@ public class Umrechnung {
 					continue;
 				}
 			}
+
+/* 
+Der Code analysiert römische Zahlensymbole und berechnet den entsprechenden dezimalen Wert.
+*/
+
+
 
 			switch (eingabe) {
 
@@ -108,6 +118,12 @@ public class Umrechnung {
 		String newRom = "";
 
 		while (dez > 0) {
+/* 
+überprüft in aufeinanderfolgenden if-Bedingungen, ob die Dezimalzahl größer 
+oder gleich bestimmten Werten (z.B., 1000, 900, 500, usw.) ist, 
+und fügt dann die entsprechenden römischen Ziffern zur newRom-Zeichenkette hinzu.
+Dabei wird die Dezimalzahl entsprechend reduziert, bis sie schließlich den Wert 0 erreicht.
+*/ 
 
 			if (dez >= 1000) {
 
