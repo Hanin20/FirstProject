@@ -4,35 +4,40 @@ import java.util.*;
 public class Umrechnung {
 
 	/*
-	 * Methode mit Rückgabewert (von der Datentyp int) und Parameterübergabe
-	 * (Datentyp: String) zur Umrechnung von römischen Zahlen in Dezimalzahlen.
+	 * Method with return value (of data type int) and parameter transfer
+	 * (data type: string) for converting Roman numerals into decimal numbers.
 	 */
 	public static int RomToDez(String rom) {
 
 		int dez = 0;
 
 		/*
-		 * Die Zeile "for (int i = 0; rom.length() > i; i++)" initialisiert eine
-		 * Schleifenvariable i mit 0 und führt die Schleife aus, solange i kleiner ist
-		 * als die Länge des Strings rom. In jedem Schleifendurchlauf wird i um 1
-		 * erhöht. Dies wird verwendet, um durch die Zeichen eines Strings rom zu
-		 * iterieren (also jedes Zeichen im String wird einzeln betrachtet oder
-		 * verarbeitet).
+		 * This line initializes a counter i with 0 and executes the loop as long as i is smaller than the length of the string rom. 
+                 * In each loop pass, i is incremented by 1. This is used to iterate through the characters of a string rom 
+                 * (i.e. each character in the string is considered or processed individually).
 		 */
 		for (int i = 0; rom.length() > i; i++) {
 
-			char eingabe = rom.charAt(i); // einzelne String Zeichen ausselen
+			char eingabe = rom.charAt(i); // Select single string characters
 			char zeichen;
 
 /*
-// Dieser Abschnitt des Codes überprüft, ob die römische Ziffer an der aktuellen Position
-// kleiner ist als die folgende Ziffer. Wenn ja, wird der entsprechende dezimale Wert subtrahiert,
-// gemäß den Regeln der römischen Zahlen.
+This section of code checks whether there is at least one more character 
+in the string rom after the current character at position i. If so, 
+this next character is stored in the variable zeichen.
 */ 
 
 			if (i + 1 != rom.length()) {
 
 				zeichen = rom.charAt(i + 1);
+
+/*
+This section checks whether the current Roman character 'I' is not the last character in the input string.
+If there is a character after the current one, the next character is checked.
+If the current character is 'I' and the next character is 'V', 'X', 'L', 'C', 'D' or 'M',
+the decimal value is reduced by 1 to take into account the special Roman numeral 'IV' or 'IX',
+and the loop is continued with 'continue'.
+*/
 
 				if (eingabe == 'I' && (zeichen == 'V' || zeichen == 'X' || zeichen == 'L' || zeichen == 'C'
 						|| zeichen == 'D' || zeichen == 'M')) {
@@ -71,7 +76,7 @@ public class Umrechnung {
 			}
 
 /* 
-Der Code analysiert römische Zahlensymbole und berechnet den entsprechenden dezimalen Wert.
+The code analyzes Roman numeral symbols and calculates the corresponding decimal value.
 */
 
 
@@ -104,14 +109,14 @@ Der Code analysiert römische Zahlensymbole und berechnet den entsprechenden dez
 			}
 		}
 
-		return dez; // Da die Methode mit Rückgabewert ist, muss sie mit ihre Rückgabewert beendet
-					// werden.
+		return dez; // Since the method has a return value, 
+                           //it must be terminated with its return value.
 
 	}
 
 	/*
-	 * Methode mit Rückgabewert (von der Datentyp String) und Parameterübergabe
-	 * (Datentyp: int) zur Umrechnung von Dezimalzahlen in römischen Zahlen in .
+	 * Method with return value (of data type string) and parameter transfer (data type: int) 
+         * for converting decimal numbers in Roman numerals to .
 	 */
 	public static String DecInRom(int dez) {
 
@@ -119,10 +124,10 @@ Der Code analysiert römische Zahlensymbole und berechnet den entsprechenden dez
 
 		while (dez > 0) {
 /* 
-überprüft in aufeinanderfolgenden if-Bedingungen, ob die Dezimalzahl größer 
-oder gleich bestimmten Werten (z.B., 1000, 900, 500, usw.) ist, 
-und fügt dann die entsprechenden römischen Ziffern zur newRom-Zeichenkette hinzu.
-Dabei wird die Dezimalzahl entsprechend reduziert, bis sie schließlich den Wert 0 erreicht.
+checks whether the decimal number is greater than 
+or equal to certain values (e.g., 1000, 900, 500, etc.), 
+and then adds the corresponding Roman numerals to the newRom string.
+The decimal number is reduced accordingly until it finally reaches the value 0.
 */ 
 
 			if (dez >= 1000) {
@@ -199,7 +204,6 @@ Dabei wird die Dezimalzahl entsprechend reduziert, bis sie schließlich den Wert
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		String[] romNumber = { "I", "V", "X", "L", "C", "D", "M" };
 		int[] dezNumber = { 1, 5, 10, 50, 100, 500, 1000 };
