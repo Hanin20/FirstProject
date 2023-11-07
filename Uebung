@@ -166,14 +166,18 @@ public class Main {
                 else {
                     System.out.println("Geben Sie den Dezimalzahl ein:");
                     int dez = sc.nextInt();
-                    if (dez == -1){
+                    sc.nextLine();
+
+                    if (dez == -1) {
                         System.out.println("ist nicht definiert!!");
                         continue;
-                    }
-                    String newRom = DecInRom(dez);
 
-                        System.out.println("Der Römischen Zahl lautet: " + newRom);
                     }
+                        String newRom = DecInRom(dez);
+                        System.out.println("Der Römischen Zahl lautet: " + newRom);
+
+                    }
+
 
                 System.out.println("Möchten Sie andere Umrechnung durchführen? \nGeben Sie J/N: ");
                 eingabe = sc.nextLine();
