@@ -1,244 +1,169 @@
-# 
+/**
+ * Tic Tac Toe Game
+ * @author Hanin Aljalab: 3009857
+ */
+
 import java.util.*;
+public class Main {
+    public static void main(String[] args) {
 
-public class Umrechnung {
+        //Decleration of the variables
+        char f1, f2, f3, f4, f5, f6, f7, f8, f9;
+        int player;
+        boolean win;
 
-	/*
-	 * Methode mit Rückgabewert (von der Datentyp int) und Parameterübergabe
-	 * (Datentyp: String) zur Umrechnung von römischen Zahlen in Dezimalzahlen.
-	 */
-	public static int RomToDez(String rom) {
+        //Initialize the variables
+        f1 = f2 = f3 = f4 = f5 = f6 = f7 = f8 = f9 = '#';
+        player = 1;
+        win = false;
 
-		int dez = 0;
+        //creating the "Scanner"
+        Scanner sc = new Scanner(System.in);
 
-		/*
-		 * Die Zeile "for (int i = 0; rom.length() > i; i++)" initialisiert eine
-		 * Schleifenvariable i mit 0 und führt die Schleife aus, solange i kleiner ist
-		 * als die Länge des Strings rom. In jedem Schleifendurchlauf wird i um 1
-		 * erhöht. Dies wird verwendet, um durch die Zeichen eines Strings rom zu
-		 * iterieren (also jedes Zeichen im String wird einzeln betrachtet oder
-		 * verarbeitet).
-		 */
-		for (int i = 0; rom.length() > i; i++) {
+        //start the game
+        while (win == false) {
+            //Output the playing field
+            spielfeldAusgeben(f1,f2,f3,f4,f5,f6,f7,f8,f9);
 
-			char eingabe = rom.charAt(i); // einzelne String Zeichen ausselen
-			char zeichen;
+            //When it's player 1's turn
+            if (player == 1){
+                System.out.println("Spieler 1 ist an der Reihe.");
+                System.out.println("Wo möchten Sie setzen?");
+                int input = sc.nextInt();
+                System.out.println("Sie haben die Position "+input+ " gewählt.");
 
-/*
-// Dieser Abschnitt des Codes überprüft, ob die römische Ziffer an der aktuellen Position
-// kleiner ist als die folgende Ziffer. Wenn ja, wird der entsprechende dezimale Wert subtrahiert,
-// gemäß den Regeln der römischen Zahlen.
-*/ 
+                //Check with field has been selected
+                //change the selected field
+                switch (input){
+                    case 1:
+                        f1 = 'X';
+                        break;
 
-			if (i + 1 != rom.length()) {
+                    case 2:
+                        f2 = 'X';
+                        break;
 
-				zeichen = rom.charAt(i + 1);
+                    case 3:
+                        f3 = 'X';
+                        break;
 
-				if (eingabe == 'I' && (zeichen == 'V' || zeichen == 'X' || zeichen == 'L' || zeichen == 'C'
-						|| zeichen == 'D' || zeichen == 'M')) {
+                    case 4:
+                        f4 = 'X';
+                        break;
 
-					dez = dez - 1;
-					continue;
-					// Wenn das zutrifft, wird die aktuelle Durchlauf der Schleife übersprungen und
-					// der nächsten durchgeführt.
-				}
+                    case 5:
+                        f5 = 'X';
+                        break;
 
-				if (eingabe == 'V'
-						&& (zeichen == 'X' || zeichen == 'L' || zeichen == 'C' || zeichen == 'D' || zeichen == 'M')) {
-					dez = dez - 5;
-					continue;
-				}
+                    case 6:
+                        f6 = 'X';
+                        break;
 
-				if (eingabe == 'X' && (zeichen == 'L' || zeichen == 'C' || zeichen == 'D' || zeichen == 'M')) {
-					dez = dez - 10;
-					continue;
-				}
+                    case 7:
+                        f7 = 'X';
+                        break;
 
-				if (eingabe == 'L' && (zeichen == 'C' || zeichen == 'D' || zeichen == 'M')) {
-					dez = dez - 50;
-					continue;
-				}
+                    case 8:
+                        f8 = 'X';
+                        break;
 
-				if (eingabe == 'C' && (zeichen == 'D' || zeichen == 'M')) {
-					dez = dez - 100;
-					continue;
-				}
+                    case 9:
+                        f9 = 'X';
+                        break;
+                }
+            } else if (player == 2) {       //When it's player 2's turn
+                System.out.println("Spieler 2 ist an der Reihe.");
+                System.out.println("Wo möchten Sie setzen?");
+                int input = sc.nextInt();
+                System.out.println("Sie haben die Position "+input+ " gewählt.");
 
-				if (eingabe == 'D' && zeichen == 'M') {
-					dez = dez - 500;
-					continue;
-				}
-			}
+                //Check with field has been selected
+                //change the selected field
+                switch (input){
+                    case 1:
+                        f1 = 'O';
+                        break;
 
-/* 
-Der Code analysiert römische Zahlensymbole und berechnet den entsprechenden dezimalen Wert.
-*/
+                    case 2:
+                        f2 = 'O';
+                        break;
 
+                    case 3:
+                        f3 = 'O';
+                        break;
 
+                    case 4:
+                        f4 = 'O';
+                        break;
 
-			switch (eingabe) {
+                    case 5:
+                        f5 = 'O';
+                        break;
 
-			case 'I':
-				dez = dez + 1;
-				break;
+                    case 6:
+                        f6 = 'O';
+                        break;
 
-			case 'V':
-				dez = dez + 5;
-				break;
-			case 'X':
-				dez = dez + 10;
-				break;
-			case 'L':
-				dez = dez + 50;
-				break;
-			case 'C':
-				dez = dez + 100;
-				break;
-			case 'D':
-				dez = dez + 500;
-				break;
-			case 'M':
-				dez = dez + 1000;
-				break;
+                    case 7:
+                        f7 = 'O';
+                        break;
 
-			}
-		}
+                    case 8:
+                        f8 = 'O';
+                        break;
 
-		return dez; // Da die Methode mit Rückgabewert ist, muss sie mit ihre Rückgabewert beendet
-					// werden.
+                    case 9:
+                        f9 = 'O';
+                        break;
+                }
+            }else {
+                System.out.println("Spielerzählung hat nicht funktioniert");
+                win = true;
+            }
 
-	}
+            //the review was won
+            if (f1 == f2 && f1 == f3 && f1 != '#'){
+                win = true;
+            } else if (f4 == f5 && f4 == f6 && f4 != '#') {
+                win = true;
+            } else if (f7 == f8 && f7 == f9 && f7 != '#') {
+                win = true;
+            } else if (f1 == f4 && f1 == f7 && f1 != '#') {
+                win = true;
+            } else if (f2 == f5 && f2 == f8 && f2 != '#') {
+                win = true;
+            } else if (f3 == f6 && f3 == f9 && f3 != '#') {
+                win = true;
+            } else if (f1 == f5 && f1 == f9 && f1 != '#') {
+                win = true;
+            } else if (f3 == f5 && f3 == f7 && f3 != '#') {
+                win = true;
+            }else {
+            }
 
-	/*
-	 * Methode mit Rückgabewert (von der Datentyp String) und Parameterübergabe
-	 * (Datentyp: int) zur Umrechnung von Dezimalzahlen in römischen Zahlen in .
-	 */
-	public static String DecInRom(int dez) {
+            //Who wins?
+            if (win == true){
+                spielfeldAusgeben(f1,f2,f3,f4,f5,f6,f7,f8,f9);
+                System.out.println("Spieler "+player+" hat gewonnen");
+            }
 
-		String newRom = "";
+            //change the player
+            if (player == 1){
+                player++;
+            }else {
+                player--;
+            }
+        }
 
-		while (dez > 0) {
-/* 
-überprüft in aufeinanderfolgenden if-Bedingungen, ob die Dezimalzahl größer 
-oder gleich bestimmten Werten (z.B., 1000, 900, 500, usw.) ist, 
-und fügt dann die entsprechenden römischen Ziffern zur newRom-Zeichenkette hinzu.
-Dabei wird die Dezimalzahl entsprechend reduziert, bis sie schließlich den Wert 0 erreicht.
-*/ 
+    }
 
-			if (dez >= 1000) {
+   //Implementation of the method
+    public static void spielfeldAusgeben(char f1, char f2, char f3, char f4, char f5, char f6, char f7, char f8, char f9) {
 
-				newRom = newRom + "M";
-				dez = dez - 1000;
-
-			}
-
-			else if (dez >= 900) {
-				newRom = newRom + "CM";
-				dez = dez - 900;
-			}
-
-			else if (dez >= 500) {
-
-				dez = dez - 500;
-				newRom = newRom + "D";
-			}
-
-			else if (dez >= 400) {
-				newRom = newRom + "CD";
-				dez = dez - 400;
-			}
-
-			else if (dez >= 100) {
-				dez = dez - 100;
-				newRom = newRom + "C";
-			}
-
-			else if (dez >= 90) {
-				newRom = newRom + "XC";
-				dez = dez - 90;
-			}
-
-			else if (dez >= 50) {
-				dez = dez - 50;
-				newRom = newRom + "L";
-			}
-
-			else if (dez >= 40) {
-				newRom = newRom + "XL";
-				dez = dez - 40;
-			}
-
-			else if (dez >= 10) {
-				dez = dez - 10;
-				newRom = newRom + "X";
-			}
-
-			else if (dez >= 9) {
-				newRom = newRom + "IX";
-				dez = dez - 9;
-			}
-
-			else if (dez >= 5) {
-				dez = dez - 5;
-				newRom = newRom + "V";
-			}
-
-			else if (dez >= 4) {
-				newRom = newRom + "IV";
-				dez = dez - 4;
-			}
-
-			else if (dez >= 1) {
-				dez = dez - 1;
-				newRom = newRom + "I";
-			}
-
-		}
-
-		return newRom;
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		String[] romNumber = { "I", "V", "X", "L", "C", "D", "M" };
-		int[] dezNumber = { 1, 5, 10, 50, 100, 500, 1000 };
-
-		Scanner sc = new Scanner(System.in);
-
-		while (true) {
-
-			System.out.println(
-					"Geben Sie 1 oder 2: (1 für Römischzahl -> Dezimalzahl und 2 für Dezimalzahl -> Römischzahl)");
-			String eingabe = sc.nextLine();
-
-			if (eingabe.equals("1")) {
-
-				System.out.println("Geben Sie ein römischen Zahl ein: ");
-				String rom = sc.nextLine();
-
-				int dez = RomToDez(rom);
-				System.out.println("Der Dezimalzahl lautet: " + dez);
-			}
-
-			else {
-				System.out.println("Geben Sie den Dezimalzahl ein:");
-				int dez = sc.nextInt();
-				sc.nextLine();
-
-				String newRom = DecInRom(dez);
-
-				System.out.println("Der Römischen Zahl lautet: " + newRom);
-
-			}
-
-			System.out.println("Möchten Sie andere Umrechnung durchführen? \nGeben Sie J/N: ");
-			eingabe = sc.nextLine();
-			if (!eingabe.equals("J")) {
-				break;
-			}
-		}
-
-		System.out.println("Ende des Programms!");
-	}
+        System.out.println(f7 + " | " + f8 + " | " + f9);
+        System.out.println("---------");
+        System.out.println(f4 + " | " + f5 + " | " + f6);
+        System.out.println("---------");
+        System.out.println(f1 + " | " + f2 + " | " + f3);
+    }
 }
