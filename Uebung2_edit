@@ -1,0 +1,101 @@
+
+/**
+ * Tic Tac Toe Game
+ * @author Hanin Aljalab: 3009857, Niloufar Moghaddas: 3011331 
+ */
+
+import java.math.*;
+import java.util.*;
+
+public class TicTacToe {
+	public static void main(String[] args) {
+
+		// Decleration of the variables
+		char[][] board = { { '1', '2', '3' }, { '4', '5', '6' }, { '7', '8', '9' } };
+		int player;
+		boolean win;
+
+		// Initialize the variables
+		player = 1;
+		win = false;
+
+		// creating the "Scanner"
+		Scanner sc = new Scanner(System.in);
+
+		
+		 //start the game 
+			while (win == false) { spielfeldAusgeben(); // Output the playing field
+		 // When it's player 1's turn 
+		 if (player == 1) {
+		  System.out.println("Spieler 1 ist an der Reihe.");
+		  System.out.println("Wo möchten Sie setzen?"); int input = sc.nextInt();
+		  System.out.println("Sie haben die Position " + input + " gewählt.");
+		 * 
+		 * 
+		 * // Check with field has been selected // change the selected field switch
+		 * (input) { case 1: f1 = 'X'; break;
+		 * 
+		 * case 2: f2 = 'O'; break;
+		 * 
+		 * case 3: f3 = 'O'; break;
+		 * 
+		 * case 4: f4 = 'O'; break;
+		 * 
+		 * case 5: f5 = 'O'; break;
+		 * 
+		 * case 6: f6 = 'O'; break;
+		 * 
+		 * case 7: f7 = 'O'; break;
+		 * 
+		 * case 8: f8 = 'O'; break;
+		 * 
+		 * case 9: f9 = 'O'; break; } } else if (player == 2) { // When it's player 2's
+		 * turn System.out.println("Spieler 2 ist an der Reihe.");
+		 * System.out.println("Wo möchten Sie setzen?"); double input2 = Math.random();
+		 * System.out.println("Sie haben die Position " + input2 + " gewählt.");
+		 * 
+		 * int input = sc.nextInt(); // Check with field has been selected // change the
+		 * selected field switch (input) { case 1: f1 = 'O'; break;
+		 * 
+		 * case 2: f2 = 'O'; break;
+		 * 
+		 * case 3: f3 = 'O'; break;
+		 * 
+		 * case 4: f4 = 'O'; break;
+		 * 
+		 * case 5: f5 = 'O'; break;
+		 * 
+		 * case 6: f6 = 'O'; break;
+		 * 
+		 * case 7: f7 = 'O'; break;
+		 * 
+		 * case 8: f8 = 'O'; break;
+		 * 
+		 * case 9: f9 = 'O'; break; } } else { System.out.println("Unterschieden"); win
+		 * = true; }
+		 * 
+		 * // the review was won if (f1 == f2 && f1 == f3 && f1 != '#') { win = true; }
+		 * else if (f4 == f5 && f4 == f6 && f4 != '#') { win = true; } else if (f7 == f8
+		 * && f7 == f9 && f7 != '#') { win = true; } else if (f1 == f4 && f1 == f7 && f1
+		 * != '#') { win = true; } else if (f2 == f5 && f2 == f8 && f2 != '#') { win =
+		 * true; } else if (f3 == f6 && f3 == f9 && f3 != '#') { win = true; } else if
+		 * (f1 == f5 && f1 == f9 && f1 != '#') { win = true; } else if (f3 == f5 && f3
+		 * == f7 && f3 != '#') { win = true; } else { }
+		 * 
+		 * // Who wins? if (win == true) { spielfeldAusgeben(f1, f2, f3, f4, f5, f6, f7,
+		 * f8, f9); System.out.println("Spieler " + player + " hat gewonnen"); }
+		 * 
+		 * // change the player if (player == 1) { player++; } else { player--; } }
+		 */
+
+	}
+
+	// Implementation of the method
+	public static void spielfeldAusgeben() {
+
+		System.out.println(" [ ]  [ ]  [ ]");
+		System.out.println(" [ ]  [ ]  [ ]");
+		System.out.println(" [ ]  [ ]  [ ]");
+
+	}
+}
