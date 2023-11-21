@@ -1,169 +1,116 @@
-/**
- * Tic Tac Toe Game
- * @author Hanin Aljalab: 3009857
- */
-
 import java.util.*;
-public class Main {
-    public static void main(String[] args) {
 
-        //Decleration of the variables
-        char f1, f2, f3, f4, f5, f6, f7, f8, f9;
-        int player;
-        boolean win;
+public class TicTacToe {
+	public static void main(String[] args) {
 
-        //Initialize the variables
-        f1 = f2 = f3 = f4 = f5 = f6 = f7 = f8 = f9 = '#';
-        player = 1;
-        win = false;
+		// Decleration of the variables
+		char[][] board = { { ' ', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } };
+		int player;
+		boolean win;
 
-        //creating the "Scanner"
-        Scanner sc = new Scanner(System.in);
+		// Initialize the variables
+		player = 1;
+		win = false;
 
-        //start the game
-        while (win == false) {
-            //Output the playing field
-            spielfeldAusgeben(f1,f2,f3,f4,f5,f6,f7,f8,f9);
+		// creating the "Scanner"
+		Scanner sc = new Scanner(System.in);
 
-            //When it's player 1's turn
-            if (player == 1){
-                System.out.println("Spieler 1 ist an der Reihe.");
-                System.out.println("Wo möchten Sie setzen?");
-                int input = sc.nextInt();
-                System.out.println("Sie haben die Position "+input+ " gewählt.");
+		// Start the game
+		while (!win && !isBoardFull(board)) {
+			spielfeldAusgeben(board);
 
-                //Check with field has been selected
-                //change the selected field
-                switch (input){
-                    case 1:
-                        f1 = 'X';
-                        break;
+			if (player == 1) {
+				// Player's turn
+				spielerZug(board, sc);
+			} else {
+				// Computer's turn
+				computerZug(board);
+			}
 
-                    case 2:
-                        f2 = 'X';
-                        break;
+			// Check for a win or draw
+			win = isWin(board);
+			if (!win) {
+				player = (player == 1) ? 2 : 1; // change the player
+			}
+		}
 
-                    case 3:
-                        f3 = 'X';
-                        break;
+		spielfeldAusgeben(board);
 
-                    case 4:
-                        f4 = 'X';
-                        break;
+		if (win) {
+			System.out.println("Spieler " + player + " gewinnt!");
+		} else {
+			System.out.println("Unentschieden!");
+		}
+	}
 
-                    case 5:
-                        f5 = 'X';
-                        break;
+	// print the game board
+	public static void spielfeldAusgeben(char[][] board) {
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[i].length; j++) {
+				System.out.print(" [" + board[i][j] + "] ");
+			}
+			System.out.println();
+		}
+	}
 
-                    case 6:
-                        f6 = 'X';
-                        break;
+	//
+	public static void spielerZug(char[][] board, Scanner sc) {
+		System.out.println("Spieler, geben Sie Ihre Position ein (1-9): ");
+		int input = sc.nextInt();
 
-                    case 7:
-                        f7 = 'X';
-                        break;
+		// Convert input in row and column
+		int row = (input - 1) / 3;
+		int col = (input - 1) % 3;
 
-                    case 8:
-                        f8 = 'X';
-                        break;
+		// Check whether the position is valid and the field is not occupied
+		if (input >= 1 && input <= 9 && board[row][col] == ' ') {
+			board[row][col] = 'X';
+		} else {
+			System.out.println("Ungültige Position. Bitte erneut versuchen.");
+			spielerZug(board, sc); // Recursive call for new input
+		}
+	}
 
-                    case 9:
-                        f9 = 'X';
-                        break;
-                }
-            } else if (player == 2) {       //When it's player 2's turn
-                System.out.println("Spieler 2 ist an der Reihe.");
-                System.out.println("Wo möchten Sie setzen?");
-                int input = sc.nextInt();
-                System.out.println("Sie haben die Position "+input+ " gewählt.");
+	public static void computerZug(char[][] board) {
+		Random ra = new Random();
+		int row, col;
 
-                //Check with field has been selected
-                //change the selected field
-                switch (input){
-                    case 1:
-                        f1 = 'O';
-                        break;
+		do {
+			row = ra.nextInt(board.length);
+			col = ra.nextInt(board.length);
+		} while (board[row][col] != ' ');
 
-                    case 2:
-                        f2 = 'O';
-                        break;
+		board[row][col] = 'O';
+	}
 
-                    case 3:
-                        f3 = 'O';
-                        break;
+	public static boolean isWin(char[][] board) {
+		// Check for profit in rows, columns and diagonals
+		for (int i = 0; i < 3; i++) {
+			if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != ' ') {
+				return true; // Profit in rows
+			}
+			if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[0][i] != ' ') {
+				return true; // Profit in columns
+			}
+		}
+		// Profit in diagonals
+		if ((board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != ' ')
+				|| (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != ' ')) {
+			return true;
+		}
 
-                    case 4:
-                        f4 = 'O';
-                        break;
+		return false;
+	}
 
-                    case 5:
-                        f5 = 'O';
-                        break;
-
-                    case 6:
-                        f6 = 'O';
-                        break;
-
-                    case 7:
-                        f7 = 'O';
-                        break;
-
-                    case 8:
-                        f8 = 'O';
-                        break;
-
-                    case 9:
-                        f9 = 'O';
-                        break;
-                }
-            }else {
-                System.out.println("Spielerzählung hat nicht funktioniert");
-                win = true;
-            }
-
-            //the review was won
-            if (f1 == f2 && f1 == f3 && f1 != '#'){
-                win = true;
-            } else if (f4 == f5 && f4 == f6 && f4 != '#') {
-                win = true;
-            } else if (f7 == f8 && f7 == f9 && f7 != '#') {
-                win = true;
-            } else if (f1 == f4 && f1 == f7 && f1 != '#') {
-                win = true;
-            } else if (f2 == f5 && f2 == f8 && f2 != '#') {
-                win = true;
-            } else if (f3 == f6 && f3 == f9 && f3 != '#') {
-                win = true;
-            } else if (f1 == f5 && f1 == f9 && f1 != '#') {
-                win = true;
-            } else if (f3 == f5 && f3 == f7 && f3 != '#') {
-                win = true;
-            }else {
-            }
-
-            //Who wins?
-            if (win == true){
-                spielfeldAusgeben(f1,f2,f3,f4,f5,f6,f7,f8,f9);
-                System.out.println("Spieler "+player+" hat gewonnen");
-            }
-
-            //change the player
-            if (player == 1){
-                player++;
-            }else {
-                player--;
-            }
-        }
-
-    }
-
-   //Implementation of the method
-    public static void spielfeldAusgeben(char f1, char f2, char f3, char f4, char f5, char f6, char f7, char f8, char f9) {
-
-        System.out.println(f7 + " | " + f8 + " | " + f9);
-        System.out.println("---------");
-        System.out.println(f4 + " | " + f5 + " | " + f6);
-        System.out.println("---------");
-        System.out.println(f1 + " | " + f2 + " | " + f3);
-    }
+	public static boolean isBoardFull(char[][] board) {
+		// Check whether the pitch is full (draw)
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[i].length; j++) {
+				if (board[i][j] == ' ') {
+					return false; // There are still empty positions
+				}
+			}
+		}
+		return true; // All positions have been filled
+	}
 }
